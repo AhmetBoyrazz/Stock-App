@@ -19,7 +19,7 @@ const Firms = () => {
   // const dispatch = useDispatch();
 
   // const { token } = useSelector((state) => state.auth);
-  // const BASE_URL = "https://14208.fullstack.clarusway.com/";
+  // const BASE_URL = "https://10001.fullstack.clarusway.com/";
 
   // const getFirms = async () => {
   //   const url = "firms";
