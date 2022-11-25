@@ -65,6 +65,82 @@ const Products = () => {
     );
   };
 
+  return (
+    <Box>
+      <Typography variant="h4" color="error" mb={4}>
+        Products
+      </Typography>
+
+      <Button variant="contained" onClick={() => setOpen(true)}>
+        New Product
+      </Button>
+      {/*
+      <ProductModal open={open} setOpen={setOpen} info={info} setInfo={setInfo} /> */}
+
+      {sortedProducts?.length > 0 && (
+        <TableContainer component={Paper} sx={{ mt: 3 }} elevation={10}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell align="center">#</TableCell>
+                <TableCell align="center">Category</TableCell>
+                <TableCell align="center">
+                  <Box
+                    sx={arrowStyle}
+                    onClick={() => handleSort("brand", "text")}
+                  >
+                    <div>Brand</div>
+                    {toggle.brand === 1 && <UpgradeIcon />}
+                    {toggle.brand !== 1 && <VerticalAlignBottomIcon />}
+                  </Box>
+                </TableCell>
+                <TableCell align="center">
+                  <Box
+                    sx={arrowStyle}
+                    onClick={() => handleSort("name", "text")}
+                  >
+                    <div>Name</div>
+                    {toggle.name === 1 && <UpgradeIcon />}
+                    {toggle.name !== 1 && <VerticalAlignBottomIcon />}
+                  </Box>
+                </TableCell>
+                <TableCell align="center">
+                  <Box
+                    sx={arrowStyle}
+                    onClick={() => handleSort("stock", "number")}
+                  >
+                    <div>Stock</div>
+                    {toggle.stock === 1 && <UpgradeIcon />}
+                    {toggle.stock !== 1 && <VerticalAlignBottomIcon />}
+                  </Box>
+                </TableCell>
+                <TableCell align="center">Operation</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {sortedProducts.map((product, index) => (
+                <TableRow
+                  key={product.name}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell align="center" component="th" scope="row">
+                    {index + 1}
+                  </TableCell>
+                  <TableCell align="center">{product.category}</TableCell>
+                  <TableCell align="center">{product.brand}</TableCell>
+                  <TableCell align="center">{product.name}</TableCell>
+                  <TableCell align="center">{product.stock}</TableCell>
+                  <TableCell align="center">
+                    <DeleteIcon sx={btnHoverStyle} />
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      )}
+    </Box>
+  );
 };
 
 export default Products;
