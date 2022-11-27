@@ -18,6 +18,7 @@ const persistConfig = {
   key: "root",
   storage,
 };
+
 const persistedReducer = persistReducer(persistConfig, authReducer);
 
 const store = configureStore({
