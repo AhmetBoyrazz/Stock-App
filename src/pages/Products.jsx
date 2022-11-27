@@ -18,12 +18,13 @@ import { useSelector } from "react-redux";
 import { arrowStyle, btnHoverStyle, flexCenter } from "../styles/globalStyle";
 import useSortColumn from "../hooks/useSortColumn";
 import { MultiSelectBox, MultiSelectBoxItem } from "@tremor/react";
+import ProductModal from "../components/modals/ProductModal";
 
 const Products = () => {
   const {
-    getBrands,
-    getCategories,
-    getProducts,
+    // getBrands,
+    // getCategories,
+    // getProducts,
     deleteProduct,
     getProCatBrands,
   } = useStockCalls();
@@ -102,7 +103,6 @@ const Products = () => {
   //       })
   //   );
   // };
-  console.log(selectedBrands);
 
   return (
     <Box>
@@ -136,8 +136,12 @@ const Products = () => {
         </MultiSelectBox>
       </Box>
 
-      {/*
-      <ProductModal open={open} setOpen={setOpen} info={info} setInfo={setInfo} /> */}
+      <ProductModal
+        open={open}
+        setOpen={setOpen}
+        info={info}
+        setInfo={setInfo}
+      />
 
       {sortedData?.length > 0 && (
         <TableContainer component={Paper} sx={{ mt: 3 }} elevation={10}>
@@ -147,30 +151,21 @@ const Products = () => {
                 <TableCell align="center">#</TableCell>
                 <TableCell align="center">Category</TableCell>
                 <TableCell align="center">
-                  <Box
-                    sx={arrowStyle}
-                    onClick={() => handleSort("brand", "text")}
-                  >
+                  <Box sx={arrowStyle} onClick={() => handleSort("brand")}>
                     <div>Brand</div>
                     {columns.brand === 1 && <UpgradeIcon />}
                     {columns.brand !== 1 && <VerticalAlignBottomIcon />}
                   </Box>
                 </TableCell>
                 <TableCell align="center">
-                  <Box
-                    sx={arrowStyle}
-                    onClick={() => handleSort("name", "text")}
-                  >
+                  <Box sx={arrowStyle} onClick={() => handleSort("name")}>
                     <div>Name</div>
                     {columns.name === 1 && <UpgradeIcon />}
                     {columns.name !== 1 && <VerticalAlignBottomIcon />}
                   </Box>
                 </TableCell>
                 <TableCell align="center">
-                  <Box
-                    sx={arrowStyle}
-                    onClick={() => handleSort("stock", "number")}
-                  >
+                  <Box sx={arrowStyle} onClick={() => handleSort("stock")}>
                     <div>Stock</div>
                     {columns.stock === 1 && <UpgradeIcon />}
                     {columns.stock !== 1 && <VerticalAlignBottomIcon />}
